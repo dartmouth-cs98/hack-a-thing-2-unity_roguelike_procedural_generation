@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using RoguelikePG;
 
-public class Room : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
+[System.Serializable]
+public struct Door {
+    public Vector3 location;
+    public Direction dir;
+
+    public Door(Vector3 location, Direction dir) {
+        this.location = location;
+        this.dir = dir;
+    }
+}
+
+public class Room : MonoBehaviour {
+    public Vector3[] Cells;
+    public Door[] Doors;
+
+    void Start() {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         
     }
 }
