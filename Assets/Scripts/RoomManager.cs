@@ -20,16 +20,16 @@ public class RoomManager : MonoBehaviour
         Transform roomATransform = roomAGO.transform;
         Door doorB = roomBGO.GetComponent<Room>().Doors[1];
 
-        Door.GetAdjacentRoomLocAndRot(roomATransform, doorA, doorB, out newRoomBLoc, out newRoomBRot);
+        //Door.GetAdjacentRoomLocAndRot(roomATransform, doorA, doorB, out newRoomBLoc, out newRoomBRot);
 
-        roomBGO.transform.localPosition = newRoomBLoc;
-        roomBGO.transform.Rotate(Vector3.up, newRoomBRot);
-        Debug.Log("newRoomBLoc: " + newRoomBLoc + "\nnewRoomBRot: " + newRoomBRot);
+        //roomBGO.transform.localPosition = newRoomBLoc;
+        //roomBGO.transform.Rotate(Vector3.up, newRoomBRot);
+        //Debug.Log("newRoomBLoc: " + newRoomBLoc + "\nnewRoomBRot: " + newRoomBRot);
 
         Room roomA = roomAGO.GetComponent<Room>(), roomB = roomBGO.GetComponent<Room>();
         Debug.Log(Room.RoomsOverlap(
             roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
-            roomB, newRoomBLoc, newRoomBRot));
+            roomB, roomBGO.transform.localPosition, roomBGO.transform.localRotation.eulerAngles.y));
 
         {
             /*

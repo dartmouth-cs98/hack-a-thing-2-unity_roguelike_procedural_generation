@@ -62,7 +62,7 @@ public class Room : MonoBehaviour {
             {
                 Vector3 doorOnCellB;
 
-                if (DoorIsOnCell(roomA.Doors[dB], locB, rotB, cellA, locA, rotA, out doorOnCellB))
+                if (DoorIsOnCell(roomB.Doors[dB], locB, rotB, cellA, locA, rotA, out doorOnCellB))
                 {
                     doorsOnCellsB[dB] = doorOnCellB;
                 }
