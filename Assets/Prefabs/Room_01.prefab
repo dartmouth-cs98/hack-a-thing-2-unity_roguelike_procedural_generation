@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361803208667621881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
+  m_LocalPosition: {x: 1, y: 0.5, z: 1}
   m_LocalScale: {x: 2, y: 1, z: 2}
   m_Children: []
   m_Father: {fileID: 7361803210518441360}
@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361803208738062932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 1}
+  m_LocalPosition: {x: 1.5, y: 0.5, z: 1.5}
   m_LocalScale: {x: 0.99, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 7361803210518441360}
@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361803209008847222}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.5, z: 0.5}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.99}
   m_Children: []
   m_Father: {fileID: 7361803210518441360}
@@ -327,14 +327,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cells:
-  - {x: 0, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
-  - {x: 1, y: 0, z: 1}
+  - corner1: {x: 0, y: 0, z: 0}
+    corner2: {x: 2, y: 1, z: 2}
   Doors:
-  - location: {x: 0, y: 0, z: 0}
+  - location: {x: 0.5, y: 0.5, z: 0}
     dir: 3
-  - location: {x: 1, y: 0, z: 1}
+  - location: {x: 2, y: 0.5, z: 1.5}
     dir: 0
 --- !u!1 &7361803210628819355
 GameObject:
@@ -363,7 +361,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7361803210628819355}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.5}
+  m_LocalPosition: {x: 1, y: 0.5, z: 1}
   m_LocalScale: {x: 1.8, y: 0.8, z: 1.8}
   m_Children: []
   m_Father: {fileID: 7361803210518441360}

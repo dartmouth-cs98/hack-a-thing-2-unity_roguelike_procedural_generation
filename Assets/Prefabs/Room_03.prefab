@@ -120,7 +120,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8031093542137494283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 2, z: 0}
+  m_LocalPosition: {x: 1.5, y: 2.5, z: 0.5}
   m_LocalScale: {x: 0.6, y: 0.6, z: 0.99}
   m_Children: []
   m_Father: {fileID: 8031093542915413199}
@@ -328,33 +328,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Cells:
   - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
-  - corner1: {x: 0, y: 0, z: 0}
-    corner2: {x: 0, y: 0, z: 0}
+    corner2: {x: 2, y: 3, z: 2}
   Doors:
-  - location: {x: 0, y: 0, z: 0}
+  - location: {x: 0.5, y: 0.5, z: 0}
     dir: 3
-  - location: {x: 1, y: 2, z: 0}
+  - location: {x: 1.5, y: 2.5, z: 0}
     dir: 3
 --- !u!1 &8031093542958682308
 GameObject:
