@@ -14,6 +14,8 @@ namespace RoguelikePG
 
     public class RoguelikePGUtility
     {
-
+        public static float AngleTo(Direction from, Direction to) {
+            return 90 * ((from - to) % 4);
+        }
     }
 }
