@@ -9,7 +9,10 @@ public class Room : MonoBehaviour {
     //void Start() { } void Update() { }
 
     /* **************** RoomsOverlap() ****************
-     * Determines whether two rooms overlap.
+     * Determines whether two rooms overlap. A more appropriate name would be
+     * "RoomsOverlapOrBlockADoor()", but it's unlikely that the functionality
+     * would be needed where Rooms that don't overlap but do block door(s)
+     * should return false, so these two operations are combined.
      * 
      * Parameters:
      *   roomA (Room): The first room to evaluate
