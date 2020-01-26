@@ -13,11 +13,6 @@ public class RoomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("East to West = " + RoguelikePGUtility.AngleTo(Direction.East, Direction.West));
-        Debug.Log("North to West = " + RoguelikePGUtility.AngleTo(Direction.North, Direction.West));
-        Debug.Log("North to East = " + RoguelikePGUtility.AngleTo(Direction.North, Direction.East));
-        Debug.Log("South to North = " + RoguelikePGUtility.AngleTo(Direction.South, Direction.North));
-
         Vector3 newRoomBLoc;
         float newRoomBRot;
 
@@ -30,6 +25,49 @@ public class RoomManager : MonoBehaviour
         roomBGO.transform.localPosition = newRoomBLoc;
         roomBGO.transform.Rotate(Vector3.up, newRoomBRot);
         Debug.Log("newRoomBLoc: " + newRoomBLoc + "\nnewRoomBRot: " + newRoomBRot);
+
+        Room roomA = roomAGO.GetComponent<Room>(), roomB = roomBGO.GetComponent<Room>();
+        Debug.Log(Room.RoomsOverlap(
+            roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+            roomB, newRoomBLoc, newRoomBRot));
+
+        {
+            /*
+            roomCGO.transform.localPosition = new Vector3(1, 1, 1);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(1, 0, 1);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(0, 0, 0);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(2, 0, 0);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(2, 0, 0);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(2, 0, 2);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(4, 0, 0);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            roomCGO.transform.localPosition = new Vector3(2, 0, -2);
+            Debug.Log("c at " + roomCGO.transform.localPosition + ": " + Room.RoomsOverlap(
+                roomA, roomAGO.transform.localPosition, roomAGO.transform.localRotation.eulerAngles.y,
+                roomC, roomCGO.transform.localPosition, roomCGO.transform.localRotation.eulerAngles.y));
+            */
+        }
+
     }
 
     // Update is called once per frame
