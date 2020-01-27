@@ -4,6 +4,9 @@ using RoguelikePG;
 
 public class Room : MonoBehaviour {
     public Cell[] Cells;
+    // Because of how the openDoors Queue is implemented in RoomManager, it is
+    // assumed that a Room has less than 16 doors, although this number can be
+    // increased if needed.
     public Door[] Doors;
 
     //void Start() { } void Update() { }
@@ -62,23 +65,18 @@ public class Room : MonoBehaviour {
                 }
             }
 
-            for (int dB = 0; dB < roomB.Doors.Length; dB++)
-            {
+            for (int dB = 0; dB < roomB.Doors.Length; dB++) {
                 Vector3 doorOnCellB;
 
-                if (DoorIsOnCell(roomB.Doors[dB], locB, rotB, cellA, locA, rotA, out doorOnCellB))
-                {
+                if (DoorIsOnCell(roomB.Doors[dB], locB, rotB, cellA, locA, rotA, out doorOnCellB)) {
                     doorsOnCellsB[dB] = doorOnCellB;
                 }
             }
         }
 
-        //Debug.Log("doors on cells: " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsA) + ",\n " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsB));
-
         for (int dA = 0; dA < roomA.Doors.Length; dA++) {
             for (int dB = 0; dB < roomB.Doors.Length; dB++) {
                 if (doorsOnCellsA[dA] != Vector3.zero && doorsOnCellsA[dA] == doorsOnCellsB[dB]) {
-                    //Debug.Log("match found: " + doorsOnCellsA[dA]);
                     doorsOnCellsA[dA] = Vector3.zero;
                     doorsOnCellsB[dB] = Vector3.zero;
                 }
@@ -110,20 +108,18 @@ public class Room : MonoBehaviour {
      *     rotation
      */
     private static void GetMinAndMaxCorners(Cell cell, Vector3 loc, float rot, out Vector3 minCorner, out Vector3 maxCorner) {
-        Vector3 corner1 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner1;
-        RoguelikePGUtility.RoundVector3(corner1);
-        Vector3 corner2 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner2;
-        RoguelikePGUtility.RoundVector3(corner2);
-        minCorner = new Vector3(
+        Vector3 corner1 = RPGUtil.RoundVec3(
+            loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner1);
+        Vector3 corner2 = RPGUtil.RoundVec3(
+            loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner2);
+        minCorner = RPGUtil.RoundVec3(new Vector3(
             Mathf.Min(corner1.x, corner2.x),
             Mathf.Min(corner1.y, corner2.y),
-            Mathf.Min(corner1.z, corner2.z));
-        RoguelikePGUtility.RoundVector3(minCorner);
-        maxCorner = new Vector3(
+            Mathf.Min(corner1.z, corner2.z)));
+        maxCorner = RPGUtil.RoundVec3(new Vector3(
             Mathf.Max(corner1.x, corner2.x),
             Mathf.Max(corner1.y, corner2.y),
-            Mathf.Max(corner1.z, corner2.z));
-        RoguelikePGUtility.RoundVector3(maxCorner);
+            Mathf.Max(corner1.z, corner2.z)));
     }
 
     /* **************** DoorIsOnCell() ****************
@@ -151,10 +147,9 @@ public class Room : MonoBehaviour {
      */
     private static bool DoorIsOnCell(Door door, Vector3 doorRoomLoc, float doorRoomRot, Cell cell, Vector3 cellRoomLoc, float cellRoomRot, out Vector3 doorLoc) {
         doorLoc = doorRoomLoc + Quaternion.AngleAxis(doorRoomRot, Vector3.up) * door.location;
-        RoguelikePGUtility.RoundVector3(doorLoc);
+        doorLoc = RPGUtil.RoundVec3(doorLoc, 1);
         Vector3 minCorner, maxCorner;
         GetMinAndMaxCorners(cell, cellRoomLoc, cellRoomRot, out minCorner, out maxCorner);
-        //Debug.Log("minCorner: " + minCorner + ", maxCorner: " + maxCorner + ", doorLoc: " + doorLoc);
 
         /*
          * Hopefully the spacing of this return statements help clarify what it does, but in case it doesn't:
@@ -169,18 +164,32 @@ public class Room : MonoBehaviour {
          */
 
         return
-            minCorner.y < doorLoc.y &&
-            doorLoc.y < maxCorner.y &&
-            (   (   (   doorLoc.x == minCorner.x ||
+            minCorner.y < doorLoc.y
+            &&
+            doorLoc.y < maxCorner.y
+            &&
+            (
+                (
+                    (
+                        doorLoc.x == minCorner.x
+                        ||
                         doorLoc.x == maxCorner.x
-                    ) &&
-                    minCorner.z < doorLoc.z &&
+                    )
+                    &&
+                    minCorner.z < doorLoc.z
+                    &&
                     doorLoc.z < maxCorner.z
-                ) ||
-                (   (   doorLoc.z == minCorner.z ||
+                )
+                ||
+                (
+                    (
+                        doorLoc.z == minCorner.z
+                        ||
                         doorLoc.z == maxCorner.z
-                    ) &&
-                    minCorner.x < doorLoc.x &&
+                    )
+                    &&
+                    minCorner.x < doorLoc.x
+                    &&
                     doorLoc.x < maxCorner.x
                 )
             );

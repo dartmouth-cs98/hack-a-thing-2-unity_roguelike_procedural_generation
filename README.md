@@ -17,10 +17,14 @@ Lauren implemented the pseudocode from the Reddit post, which ended up being, at
 
 We worked together at the end to try to find and fix some bugs with rooms spawning inside of/overlapping other rooms, which generally turned out to be an issue with `Vector3`s not being precise after having rotations applied to them.
 
+After some careful debugging and rounding, we managed to get everything working as planned.
+
+![Screenshot of current state](/Assets/Images/roguelikePG_20200127.JPG)
+
 ## What we learned
 
 * To heck with rotations (our new mantra)
-* Unity doesn’t support Tuples 🙁
+* Unity doesn’t support `Tuple`s 🙁
 * It can take many iterations and a lot of thought to come up with the optimal data structure/organization/methods for a given problem
 * The data structure/organization/methods may be subject to a change after working things out with designers, so this will be evolving as we go
 
@@ -32,9 +36,9 @@ Having this functionality working early on is useful because it will allow for d
 
 ## What didn’t work
 
-As mentioned earlier, we had some issues with rotations of `Vector3` values that resulted in some rooms generating on top of one another as well as doors being blocked by walls. We are still in the process of fixing these bugs.
+As mentioned earlier, we had some issues with rotations of `Vector3` values that resulted in some `Room`s generating on top of one another as well as `Door`s being blocked by walls.
 
-We also initially attempted to incorporate Tuples into our RoomManager, which eventually had to be changed because Unity does not support Tuples.
+We also initially attempted to incorporate `Tuples` into our `RoomManager`, which eventually had to be changed because Unity does not support `Tuples`.
 
 ## External links (tutorials)
 
