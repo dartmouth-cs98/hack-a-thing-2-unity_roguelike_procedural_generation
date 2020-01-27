@@ -38,7 +38,7 @@ Having this functionality working early on is useful because it will allow for d
 
 As mentioned earlier, we had some issues with rotations of `Vector3` values that resulted in some `Room`s generating on top of one another as well as `Door`s being blocked by walls.
 
-We also initially attempted to incorporate `Tuples` into our `RoomManager`, which eventually had to be changed because Unity does not support `Tuples`.
+We also initially attempted to incorporate `Tuple`s into our `RoomManager`, which eventually had to be changed because Unity does not support `Tuple`s.
 
 ## External links (tutorials)
 
