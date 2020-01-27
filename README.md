@@ -1,1 +1,2 @@
-# hack-a-thing-2-unity_roguelike_procedural_generation
+# Hack-a-Thing 2: Roguelike Procedural Generation
+#### Lauren Gray & Zeke Baker | 2020-01-27
