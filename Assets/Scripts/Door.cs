@@ -5,6 +5,7 @@ namespace RoguelikePG {
     public class Door {
         public Vector3 location;
         public Direction dir;
+        
 
         public Door(Vector3 location, Direction dir) {
             this.location = location;

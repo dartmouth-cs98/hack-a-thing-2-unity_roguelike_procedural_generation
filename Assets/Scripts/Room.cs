@@ -31,16 +31,20 @@ public class Room : MonoBehaviour {
      *     false otherwise
      */
     public static bool RoomsOverlap(Room roomA, Vector3 locA, float rotA, Room roomB, Vector3 locB, float rotB) {
+        // Potential improvement: keep track of doors on cells with a list of door indices, have out parameter for
+        // list of these indices that are now sealed. Should work without it though
         Vector3[] doorsOnCellsA = new Vector3[roomA.Doors.Length];
         Vector3[] doorsOnCellsB = new Vector3[roomB.Doors.Length];
 
         foreach (Cell cellA in roomA.Cells) {
             Vector3Int minCornerA, maxCornerA;
             GetMinAndMaxCorners(cellA, locA, rotA, out minCornerA, out maxCornerA);
+            Debug.Log("minCornerA: " + minCornerA + ", maxCornerA: " + maxCornerA);
 
             foreach (Cell cellB in roomB.Cells) {
                 Vector3Int minCornerB, maxCornerB;
                 GetMinAndMaxCorners(cellB, locB, rotB, out minCornerB, out maxCornerB);
+                Debug.Log("minCornerB: " + minCornerB + ", maxCornerB: " + maxCornerB);
 
                 if (Mathf.Max(minCornerA.x, minCornerB.x) < Mathf.Min(maxCornerA.x, maxCornerB.x) &&
                     Mathf.Max(minCornerA.y, minCornerB.y) < Mathf.Min(maxCornerA.y, maxCornerB.y) &&
@@ -109,13 +113,13 @@ public class Room : MonoBehaviour {
         Vector3 corner1 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner1;
         Vector3 corner2 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner2;
         minCorner = new Vector3Int(
-            (int)Mathf.Min(corner1.x, corner2.x),
-            (int)Mathf.Min(corner1.y, corner2.y),
-            (int)Mathf.Min(corner1.z, corner2.z));
+            (int)Mathf.Min(Mathf.Round(corner1.x), Mathf.Round(corner2.x)),
+            (int)Mathf.Min(Mathf.Round(corner1.y), Mathf.Round(corner2.y)),
+            (int)Mathf.Min(Mathf.Round(corner1.z), Mathf.Round(corner2.z)));
         maxCorner = new Vector3Int(
-            (int)Mathf.Max(corner1.x, corner2.x),
-            (int)Mathf.Max(corner1.y, corner2.y),
-            (int)Mathf.Max(corner1.z, corner2.z));
+            (int)Mathf.Max(Mathf.Round(corner1.x), Mathf.Round(corner2.x)),
+            (int)Mathf.Max(Mathf.Round(corner1.y), Mathf.Round(corner2.y)),
+            (int)Mathf.Max(Mathf.Round(corner1.z), Mathf.Round(corner2.z)));
     }
 
     /* **************** DoorIsOnCell() ****************
