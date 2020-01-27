@@ -7,7 +7,7 @@ Our initial goal was to create some sort of procedurally generated structure. La
 
 [![Unity3d Dungeon Generator](https://i.ytimg.com/vi/0YXoq12Devw/maxresdefault.jpg)](https://youtu.be/0YXoq12Devw)
 
-The video linked to [a Reddit post by u/DMeville](https://www.reddit.com/r/Unity3D/comments/3dt2in/procedural_dungeon_generator_im_working_on/?st=j3tkmk23&sh=61e60504), in which they outlined (in pseudocode) the general algorithm they were using. For our Hack-a-Thing, we decided to take a stab at implementing that pseudocode.
+The video linked to [a Reddit post by u/DMeville](https://www.reddit.com/r/Unity3D/comments/3dt2in/procedural_dungeon_generator_im_working_on/?st=j3tkmk23&sh=61e60504), in which they outlined (in pseudocode) the general algorithm they were using. For our Hack-a-Thing, we decided to take a stab at implementing that pseudocode. Zeke had a faint understanding of the ["roguelike" genre](https://en.wikipedia.org/wiki/Roguelike) frequently associated with [dungeon-crawling](https://en.wikipedia.org/wiki/Dungeon_crawl), which is what gave this project its name.
 
 ## Who did what
 
