@@ -36,6 +36,7 @@ namespace RoguelikePG {
             locB = locA; // Start at Room A location
             locB += Quaternion.AngleAxis(rotA, Vector3.up) * doorA.location; // Move to the door location
             locB -= Quaternion.AngleAxis(rotB, Vector3.up) * doorB.location;
+            RoguelikePGUtility.RoundVector3(locB);
             // Thank you NCarter from https://forum.unity.com/threads/rotating-a-vector-by-an-eular-angle.18485/
         }
     }

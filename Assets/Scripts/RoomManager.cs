@@ -50,7 +50,7 @@ public class RoomManager : MonoBehaviour
         int startDoor;
         bool matchFound;
 
-        while (count < 20 && openDoors.Count > 0)
+        while (_activeRoomPrefabIndices.Count < 20 && openDoors.Count > 0)
         {
             int nextDoorData = openDoors.Dequeue();
             int activeRoomsIdx = nextDoorData >> 4, doorIdx = nextDoorData & 0xF;
@@ -131,10 +131,6 @@ public class RoomManager : MonoBehaviour
                 randRoom++;
                 randRoom %= prefabs.Length;
             } while (randRoom != startRoom && !matchFound);
-
-
-
-            count++;
         }
 
         for(int ar = 0; ar < _activeRoomPrefabIndices.Count; ar++)

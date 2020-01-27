@@ -37,14 +37,14 @@ public class Room : MonoBehaviour {
         Vector3[] doorsOnCellsB = new Vector3[roomB.Doors.Length];
 
         foreach (Cell cellA in roomA.Cells) {
-            Vector3Int minCornerA, maxCornerA;
+            Vector3 minCornerA, maxCornerA;
             GetMinAndMaxCorners(cellA, locA, rotA, out minCornerA, out maxCornerA);
-            Debug.Log("minCornerA: " + minCornerA + ", maxCornerA: " + maxCornerA);
+            ////Debug.Log("minCornerA: " + minCornerA + ", maxCornerA: " + maxCornerA);
 
             foreach (Cell cellB in roomB.Cells) {
-                Vector3Int minCornerB, maxCornerB;
+                Vector3 minCornerB, maxCornerB;
                 GetMinAndMaxCorners(cellB, locB, rotB, out minCornerB, out maxCornerB);
-                Debug.Log("minCornerB: " + minCornerB + ", maxCornerB: " + maxCornerB);
+                ////Debug.Log("minCornerB: " + minCornerB + ", maxCornerB: " + maxCornerB);
 
                 if (Mathf.Max(minCornerA.x, minCornerB.x) < Mathf.Min(maxCornerA.x, maxCornerB.x) &&
                     Mathf.Max(minCornerA.y, minCornerB.y) < Mathf.Min(maxCornerA.y, maxCornerB.y) &&
@@ -73,12 +73,12 @@ public class Room : MonoBehaviour {
             }
         }
 
-        Debug.Log("doors on cells: " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsA) + ",\n " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsB));
+        //Debug.Log("doors on cells: " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsA) + ",\n " + RoguelikePGUtility.Vector3ArrayString(doorsOnCellsB));
 
         for (int dA = 0; dA < roomA.Doors.Length; dA++) {
             for (int dB = 0; dB < roomB.Doors.Length; dB++) {
                 if (doorsOnCellsA[dA] != Vector3.zero && doorsOnCellsA[dA] == doorsOnCellsB[dB]) {
-                    Debug.Log("match found: " + doorsOnCellsA[dA]);
+                    //Debug.Log("match found: " + doorsOnCellsA[dA]);
                     doorsOnCellsA[dA] = Vector3.zero;
                     doorsOnCellsB[dB] = Vector3.zero;
                 }
@@ -109,17 +109,21 @@ public class Room : MonoBehaviour {
      *     out of the corner Vector3s of the Cell, adjusted for location and
      *     rotation
      */
-    private static void GetMinAndMaxCorners(Cell cell, Vector3 loc, float rot, out Vector3Int minCorner, out Vector3Int maxCorner) {
+    private static void GetMinAndMaxCorners(Cell cell, Vector3 loc, float rot, out Vector3 minCorner, out Vector3 maxCorner) {
         Vector3 corner1 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner1;
+        RoguelikePGUtility.RoundVector3(corner1);
         Vector3 corner2 = loc + Quaternion.AngleAxis(rot, Vector3.up) * cell.corner2;
-        minCorner = new Vector3Int(
-            (int)Mathf.Min(Mathf.Round(corner1.x), Mathf.Round(corner2.x)),
-            (int)Mathf.Min(Mathf.Round(corner1.y), Mathf.Round(corner2.y)),
-            (int)Mathf.Min(Mathf.Round(corner1.z), Mathf.Round(corner2.z)));
-        maxCorner = new Vector3Int(
-            (int)Mathf.Max(Mathf.Round(corner1.x), Mathf.Round(corner2.x)),
-            (int)Mathf.Max(Mathf.Round(corner1.y), Mathf.Round(corner2.y)),
-            (int)Mathf.Max(Mathf.Round(corner1.z), Mathf.Round(corner2.z)));
+        RoguelikePGUtility.RoundVector3(corner2);
+        minCorner = new Vector3(
+            Mathf.Min(corner1.x, corner2.x),
+            Mathf.Min(corner1.y, corner2.y),
+            Mathf.Min(corner1.z, corner2.z));
+        RoguelikePGUtility.RoundVector3(minCorner);
+        maxCorner = new Vector3(
+            Mathf.Max(corner1.x, corner2.x),
+            Mathf.Max(corner1.y, corner2.y),
+            Mathf.Max(corner1.z, corner2.z));
+        RoguelikePGUtility.RoundVector3(maxCorner);
     }
 
     /* **************** DoorIsOnCell() ****************
@@ -147,8 +151,10 @@ public class Room : MonoBehaviour {
      */
     private static bool DoorIsOnCell(Door door, Vector3 doorRoomLoc, float doorRoomRot, Cell cell, Vector3 cellRoomLoc, float cellRoomRot, out Vector3 doorLoc) {
         doorLoc = doorRoomLoc + Quaternion.AngleAxis(doorRoomRot, Vector3.up) * door.location;
-        Vector3Int minCorner, maxCorner;
+        RoguelikePGUtility.RoundVector3(doorLoc);
+        Vector3 minCorner, maxCorner;
         GetMinAndMaxCorners(cell, cellRoomLoc, cellRoomRot, out minCorner, out maxCorner);
+        //Debug.Log("minCorner: " + minCorner + ", maxCorner: " + maxCorner + ", doorLoc: " + doorLoc);
 
         /*
          * Hopefully the spacing of this return statements help clarify what it does, but in case it doesn't:

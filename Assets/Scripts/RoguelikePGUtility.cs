@@ -27,5 +27,13 @@ namespace RoguelikePG
 
             return retStr + "]";
         }
+
+        public static void RoundVector3(Vector3 vector3) {
+            //Debug.Log("unrounded vector3: " + vector3);
+            vector3.x = Mathf.Round(vector3.x);
+            vector3.y = Mathf.Round(vector3.y);
+            vector3.z = Mathf.Round(vector3.z);
+            //Debug.Log("round vector3: " + vector3);
+        }
     }
 }
